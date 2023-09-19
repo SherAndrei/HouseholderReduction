@@ -14,7 +14,10 @@ asan: CFLAGS += -fsanitize=address
 asan: LDFLAGS += -fsanitize=address
 asan: all
 
-all: SolveLinearEquations.out
+all: SolveLinearEquations.out GenerateBadMatrix.out
+
+GenerateBadMatrix.out: GenerateBadMatrix.c
+	$(CC) $^ -o $@ $(CFLAGS) $(LDFLAGS)
 
 SolveLinearEquations.out: SolveLinearEquations.o HouseholderReduction.o
 	$(CC) $^ -o $@ $(LIBS) $(LDFLAGS) $(CFLAGS)
